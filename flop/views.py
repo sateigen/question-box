@@ -1,11 +1,21 @@
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import UserCreationForm
+from django.views.generic.detail import DetailView
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import Question, Answer, Comment, Tag
 from django.contrib.auth.models import User
 from .serializers import QuestionSerializer, AnswerSerializer, CommentSerializer, TagSerializer
 from rest_framework import viewsets
+
+
+class QuestionDetailView(DetailView):
+    model = Question
+    template_name = 'flop/question.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(QuestionDetailView, self).get_context_data(**kwargs)
+        return context
 
 
 class QuestionViewSet(viewsets.ModelViewSet):

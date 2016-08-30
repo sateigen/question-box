@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html>
   <head>
@@ -7,7 +8,7 @@
     <title>Flop</title>
   </head>
   <body>
-    <nav class="navigation navbar-default navbar-fixed-top" id="flop_navbar">
+    <nav class="navigation navbar-default navbar-fixed" id="flop_navbar">
       <div class="container-fluid">
         <a class="navbar-text navbar-left" id="logo" href="/">Flop Undercurrent</a>
         <form class="navbar-form navbar-right">
@@ -26,5 +27,8 @@
     </nav>
     {% block body %}
     {% endblock %}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="{% static 'flop/js/app.js' %}"></script>
   </body>
 </html>
