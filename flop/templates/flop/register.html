@@ -1,4 +1,15 @@
 {% extends 'flop/base.html' %}
 {% block body %}
 
+<div class="container">
+  <div class="col-md-10 col-md-offset-1 card text-xs-center">
+    <h2>Welcome to Flop Undercurrent! Please register using the form below</h2>
+    <div class="form-group-row card-block inline text-justify">
+      <form method="post" action="">
+        {% csrf_token %} {{ userform.as_p }}
+        <button type="submit" class="btn btn-default">Submit</button>
+      </form>
+    </div>
+  </div>
+</div>
 {% endblock %}
