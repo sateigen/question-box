@@ -16,6 +16,12 @@
         </div>
         <button type="submit" class="btn btn-default">Submit</button>
       </form>
+      {% if user.is_authenticated %}
+      <a class="navbar-text navbar-right" id="logout" href="/logout.html">Logout</a>
+      {% else %}
+      <a class="navbar-text navbar-right" id="login" href="/login.html">Login</a>
+      <a class="navbar-text navbar-right" id="register" href="/register.html">Register</a>
+      {% endif %}
       </div> <!-- container fluid -->
     </nav>
     {% block body %}
