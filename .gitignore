@@ -1,6 +1,6 @@
 .direnv/
 .envrc
 __pycache__
-.DS.store
+.DS_store
 *.pyc
 .env
