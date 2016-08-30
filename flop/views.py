@@ -59,8 +59,9 @@ def signin(request):
         if user is not None:
             login(request, user)
             return HttpResponseRedirect('/')
-    else:
-        return render(request, 'flop/login.html', context={})
+        else:
+            message = "Invalid login credentials"
+    return render(request, 'flop/login.html', context={'message': message})
 
 
 def signout(request):
