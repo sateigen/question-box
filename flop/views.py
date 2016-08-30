@@ -59,7 +59,8 @@ def signin(request):
         if user is not None:
             login(request, user)
             return HttpResponseRedirect('/')
-    return render(request, 'flop/login.html')
+    else:
+        return render(request, 'flop/login.html', context={})
 
 
 def signout(request):
