@@ -52,6 +52,7 @@ def register(request):
 
 
 def signin(request):
+    context = {}
     if request.POST:
         username = request.POST['username']
         password = request.POST['password']
@@ -60,8 +61,8 @@ def signin(request):
             login(request, user)
             return HttpResponseRedirect('/')
         else:
-            message = "Invalid login credentials"
-    return render(request, 'flop/login.html', context={'message': message})
+            context['message'] = "Invalid login credentials"
+    return render(request, 'flop/login.html', context)
 
 
 def signout(request):
