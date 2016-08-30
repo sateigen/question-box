@@ -27,6 +27,17 @@ class AnswerViewSet(viewsets.ModelViewSet):
     serializer_class = AnswerSerializer
     queryset = Answer.objects.all()
 
+    def get_queryset(self):
+        """
+        Optionally restricts the returned purchases to a given user,
+        by filtering against a `username` query parameter in the URL.
+        """
+        queryset = Answer.objects.all()
+        question = self.request.query_params.get('question', None)
+        if question is not None:
+            queryset = queryset.filter(question=question)
+        return queryset
+
 
 class CommentViewSet(viewsets.ModelViewSet):
     serializer_class = CommentSerializer
