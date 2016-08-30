@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/simplex/bootstrap.min.css" rel="stylesheet" integrity="sha384-C0X5qw1DlkeV0RDunhmi4cUBUkPDTvUqzElcNWm1NI2T4k8tKMZ+wRPQOhZfSJ9N" crossorigin="anonymous">
+    <title>Flop</title>
+  </head>
+  <body>
+    <nav class="navigation navbar-default navbar-fixed-top" id="flop_navbar">
+      <div class="container-fluid">
+        <a class="navbar-text navbar-left" id="logo" href="/">Flop Undercurrent</a>
+        <form class="navbar-form navbar-right">
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="Search">
+        </div>
+        <button type="submit" class="btn btn-default">Submit</button>
+      </form>
+      {% if user.is_authenticated %}
+      <a class="navbar-text navbar-right" id="logout" href="/logout.html">Logout</a>
+      {% else %}
+      <a class="navbar-text navbar-right" id="login" href="/login.html">Login</a>
+      <a class="navbar-text navbar-right" id="register" href="/register.html">Register</a>
+      {% endif %}
+      </div> <!-- container fluid -->
+    </nav>
+    {% block body %}
+    {% endblock %}
+  </body>
+</html>
