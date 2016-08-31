@@ -28,8 +28,10 @@ $.ajaxSetup({
     }
 });
 
-// questionID is breaking "Add a Question" on the homepage... will fix - Shannon
-var $questionID = $('.question')[0].id
+if($('.question').length >= 1) {
+  var $questionID = $('.question')[0].id
+}
+
 var $answerAnchor = $('#answer_anchor')
 var $addAnswer = $('#add_answer')
 var $activeUser = $("#userName")[0].value
