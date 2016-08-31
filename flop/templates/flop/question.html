@@ -25,7 +25,7 @@
         <div class="panel-body">
           {{ object.description }}
         </div>
-        <div class="panel-footer">submitted: {{ object.created_on }} by {{ object.user }}</div>
+        <div class="panel-footer">submitted: {{ object.created_on }} by {{ object.user }} || Tags: {% for tag in object.tags.all %} {{ tag.name }} {% endfor %}</div>
       </div>
     </div>
   </div>
@@ -39,6 +39,23 @@
         </div>
         <div class="panel-footer">submitted: {{ object.created_on }} by {{ object.user }}</div>
       </div> -->
+    </div>
+  </div>
+</div>
+<div class="container">
+  <div class="row">
+    <div class="col-md-10 col-md-offset-1">
+      <hr>
+      <form class="form-horizontal" id="final_answer">
+        {% csrf_token %}
+        <div class="form-group">
+          <div class="col-md-12">
+            <textarea class="form-control" rows="3" placeholder="Add your answer..." id="newAnswer" name="newAnswer"></textarea>
+            <input type="hidden" class="form-contol" id="userName" name="userName" value="{{ user.id }}">
+          </div>
+        </div>
+        <button type="submit" class="btn btn-default" id="add_answer">Submit Answer</button>
+      </form>
     </div>
   </div>
 </div>

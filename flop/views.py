@@ -5,7 +5,7 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import Question, Answer, Comment, Tag
 from django.contrib.auth.models import User
-from .serializers import QuestionSerializer, AnswerSerializer, CommentSerializer, TagSerializer
+from .serializers import QuestionSerializer, AnswerSerializer, CommentSerializer, TagSerializer, UserSerializer
 from rest_framework import viewsets
 
 
@@ -47,6 +47,22 @@ class CommentViewSet(viewsets.ModelViewSet):
 class TagViewSet(viewsets.ModelViewSet):
     serializer_class = TagSerializer
     queryset = Tag.objects.all()
+
+
+class UserViewSet(viewsets.ModelViewSet):
+    serializer_class = UserSerializer
+    queryset = User.objects.all()
+
+    def get_queryset(self):
+        """
+        Optionally restricts the returned purchases to a given user,
+        by filtering against a `username` query parameter in the URL.
+        """
+        queryset = User.objects.all()
+        user_id = self.request.query_params.get('user_id', None)
+        if user_id is not None:
+            queryset = queryset.filter(id=user_id)
+        return queryset
 
 
 def register(request):
