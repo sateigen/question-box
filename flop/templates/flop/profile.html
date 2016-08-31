@@ -2,8 +2,53 @@
 {% block body %}
 <div class="container">
   <div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xs-offset-0 col-sm-offset-0 col-md-offset-3 col-lg-offset-3 toppad" >
+      <div class="panel panel-info">
+        <div class="panel-heading">
+          <h3 class="panel-title">{{ object.first_name }} {{ object.last_name }}</h3>
+        </div>
+        <div class="panel-body">
+          <div class="row">
+            <div class="col-md-3 col-lg-3 " align="center">
+              {% if user.avatar == None %}
+                  <img src="DEFAULT_IMAGE" class="img-circle img-responsive">
+              {% else %}
+                  <img sorc="user.avatar" class="img-circle img-responsive">
+              {% endif %}
+            </div>
+            <div class=" col-md-9 col-lg-9 ">
+              <table class="table table-user-information">
+                <tbody>
+                  <tr>
+                    <td>User Score:</td>
+                    <td>{{ user.score }}</td>
+                  </tr>
+                  <tr>
+                    <td>Member Since:</td>
+                    <td>{{ user.date_joined|date:"m/d/Y" }}</td>
+                  </tr>
+                  <tr>
+                    <td>Email:</td>
+                    <td>{{ user.email }}</td>
+                  </tr>
+                  <tr>
+                    <td>Questions Asked:</td>
+                    <td><a href="{{ user.email }}">{{ user.email }}</a></td>
+                  </tr>
+                  <tr>
+                    <td>Questions answered:</td>
+                    <td><a href="{{ user.email }}">{{ user.email }}</a></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
     <div class="col-xl-10 col-offset-1">
-    <h1>{{ object.first_name }} {{ object.last_name }}</h1>
     <ul>{% for question in object.question_user.all %}
       <li><a href="{% url 'question-detail' question.id %}">{{question.title}}</a></li>
 
