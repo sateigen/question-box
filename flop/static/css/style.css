@@ -12,3 +12,10 @@
 #index, #profile {
   margin-top: 30px;
 }
+
+#score {
+  margin: 0 0 4px;
+  min-width: 29px;
+  text-align: center;
+  vertical-align: middle;
+}

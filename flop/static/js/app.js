@@ -38,7 +38,8 @@ var $activeUser = $("#userName")[0].value
 var $finalAnswer = $("#final_answer")
 var $newQuestion = $('#new_question')
 var $saveQuestion = $('#saveQuestion')
-
+var $upVote = $('#up_vote')
+var $downVote = $('#down_vote')
 
 $saveQuestion.click(function(){
   console.log("YES")
@@ -64,7 +65,6 @@ function displayAnswers(answers, anchor) {
 // This function should get the username for the answerer/commenter, but it doesn't
 function getUsername(userid) {
   $.ajax({ url:'/api/user/', data: {id: userid} }).done(function(response) {
-    console.log(response.results[0].username)
     return response.results[0].username
   })
 }
@@ -88,3 +88,54 @@ $finalAnswer.on("submit",function(e){
     }
   })
 })
+
+
+if($('#score').length >= 1) {
+  var $score = $('#score')
+  getQuestionScore()
+}
+// $('#score').text(getQuestionScore())
+
+
+$upVote.click(function() {
+  console.log("YES")
+  var $tempscore = parseInt($score.text())
+  $.ajax({
+          url:'/api/question/' + $questionID + '/',
+          type:'PATCH',
+          data: {'score': $tempscore +1},
+          success: function(){
+            $upVote.parent().addClass('btn-info')
+            console.log("WOW")
+          }
+        })
+        getQuestionScore()
+      })
+
+
+function getQuestionScore() {
+  $.ajax({
+    type: "GET",
+    url: '/api/question/' + $questionID + '/',
+    success: function(data){
+      console.log('get score')
+      $('#score').text(data.score)
+    }
+  })
+}
+
+
+$downVote.click(function() {
+  console.log("YES")
+  var $tempscore = parseInt($score.text())
+  $.ajax({
+          url:'/api/question/' + $questionID + '/',
+          type:'PATCH',
+          data: {'score': $tempscore -1},
+          success: function(){
+            $downVote.parent().addClass('btn-danger')
+            console.log("WOW")
+          }
+        })
+        getQuestionScore()
+      })
