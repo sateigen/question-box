@@ -78,6 +78,9 @@ def register(request):
             user = user_form.save(commit=False)
             user.password = make_password(user_form.cleaned_data['password'])
             user.save()
+            user = authenticate(username=user_form.cleaned_data['username'],
+                                password=user_form.cleaned_data['password'])
+            login(request, user)
             return HttpResponseRedirect(reverse('user_profile',
                                                 kwargs={'pk': user.id}))
     else:
