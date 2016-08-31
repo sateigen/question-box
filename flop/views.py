@@ -9,6 +9,10 @@ from .serializers import QuestionSerializer, AnswerSerializer, CommentSerializer
 from rest_framework import viewsets
 
 
+def index(request):
+    return render(request, 'flop/index.html', context={})
+
+
 class QuestionDetailView(DetailView):
     model = Question
     template_name = 'flop/question.html'
