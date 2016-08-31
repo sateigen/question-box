@@ -65,7 +65,6 @@ function displayAnswers(answers, anchor) {
 // This function should get the username for the answerer/commenter, but it doesn't
 function getUsername(userid) {
   $.ajax({ url:'/api/user/', data: {id: userid} }).done(function(response) {
-    console.log(response.results[0].username)
     return response.results[0].username
   })
 }
@@ -89,12 +88,14 @@ $finalAnswer.on("submit",function(e){
     }
   })
 })
-getQuestionScore()
 
+
+if($('#score').length >= 1) {
+  var $score = $('#score')
+  getQuestionScore()
+}
 // $('#score').text(getQuestionScore())
-var $score = $('#score')
 
-console.log($score.text())
 
 $upVote.click(function() {
   console.log("YES")
