@@ -1,3 +1,10 @@
 #bye {
   text-align: center;
 }
+
+.brand {
+    position: absolute;
+    left: 50%;
+    margin-left: -143px !important;  /* 50% of your logo width */
+    display: block;
+}

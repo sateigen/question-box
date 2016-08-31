@@ -11,9 +11,12 @@
   <body>
     <nav class="navigation navbar-default navbar-fixed" id="flop_navbar">
       <div class="container-fluid">
+        <div class="navbar-header">
+          <a class="navbar-brand brand" href="/">Let The Knowledge Through You</a>
+        </div>
         <img src="{% static 'images/water_icon.png' %}" class="navbar-text pull-xs-left" style="width: 20px;height: 20px"></img>
         <a class="navbar-text navbar-left" id="logo" href="/">Flop Undercurrent</a>
-        <h3 class="navbar-text">Let The Knowledge Flow Through You</h3>
+        <a class="navbar-text navbar-left" id=new_question href="#" data-toggle="modal" data-target="#myModal">Ask a Question</a>
         <form class="navbar-form navbar-right">
         <div class="form-group">
           <input type="text" class="form-control" placeholder="Search">
@@ -28,6 +31,32 @@
       {% endif %}
       </div> <!-- container fluid -->
     </nav>
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="myModalLabel">Ask a question!</h4>
+          </div>
+          <div class="modal-body">
+            <form>
+              {% csrf_token %}
+              <div class="form-group">
+                <label for="questionTitle" class="control-label">Question Title:</label>
+                <input type="text" class="form-control" id="questionTitle" name="questionTitle">
+                <label for="questionDescription" class="control-label">Description:</label>
+                <textarea class="form-control" id="questionDescription" name="questionDescription" rows="5"></textarea>
+                <input type="hidden" class="form-contol" id="userName" name="userName" value="{{ user.id }}">
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary" id="saveQuestion" data-dismiss="modal">Save changes</button>
+          </div>
+        </div>
+      </div>
+    </div>
     {% block body %}
     {% endblock %}
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
