@@ -8,3 +8,7 @@
     margin-left: -143px !important;  /* 50% of your logo width */
     display: block;
 }
+
+#index {
+  margin-top: 30px;
+}
