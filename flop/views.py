@@ -5,6 +5,7 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404, redirect, reverse
 from .models import Question, Answer, Comment, Tag
 from django.contrib.auth.models import User
+from django.contrib.auth.hashers import make_password
 from .serializers import QuestionSerializer, AnswerSerializer, CommentSerializer, TagSerializer, UserSerializer
 from rest_framework import viewsets
 from .forms import UserForm
@@ -75,8 +76,10 @@ def register(request):
         user_form = UserForm(request.POST)
         if user_form.is_valid():
             user = user_form.save(commit=False)
+            user.password = make_password(user_form.cleaned_data['password'])
             user.save()
-            return HttpResponseRedirect('/')
+            return HttpResponseRedirect(reverse('user_profile',
+                                                kwargs={'pk': user.id}))
     else:
         user_form = UserForm()
     context = {'userform': user_form}
