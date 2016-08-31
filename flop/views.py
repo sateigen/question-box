@@ -7,6 +7,7 @@ from .models import Question, Answer, Comment, Tag
 from django.contrib.auth.models import User
 from .serializers import QuestionSerializer, AnswerSerializer, CommentSerializer, TagSerializer
 from rest_framework import viewsets
+from .forms import UserForm
 
 
 class QuestionDetailView(DetailView):
@@ -51,13 +52,13 @@ class TagViewSet(viewsets.ModelViewSet):
 
 def register(request):
     if request.method == 'POST':
-        user_form = UserCreationForm(request.POST, prefix='user')
+        user_form = UserForm(request.POST)
         if user_form.is_valid():
             user = user_form.save(commit=False)
             user.save()
             return HttpResponseRedirect('/')
     else:
-        user_form = UserCreationForm(prefix='user')
+        user_form = UserForm()
     context = {'userform': user_form}
     return render(request, 'flop/register.html', context)
 
