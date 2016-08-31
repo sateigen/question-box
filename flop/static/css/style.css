@@ -9,9 +9,14 @@
     display: block;
 }
 
+
 #score {
   margin: 0 0 4px;
   min-width: 29px;
   text-align: center;
   vertical-align: middle;
+}
+
+#index {
+  margin-top: 30px;
 }

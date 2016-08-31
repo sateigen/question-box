@@ -1,4 +1,5 @@
 {% extends 'flop/base.html' %}
+{% load static %}
 {% block body %}
 <div class="container">
   <div class="row">
@@ -11,7 +12,7 @@
           <div class="row">
             <div class="col-md-3 col-lg-3 " align="center">
               {% if user.avatar == None %}
-                  <img src="DEFAULT_IMAGE" class="img-circle img-responsive">
+                  <img src="{% static 'images/default_profile.jpg' %}" class="img-circle img-responsive">
               {% else %}
                   <img sorc="user.avatar" class="img-circle img-responsive">
               {% endif %}
