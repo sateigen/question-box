@@ -3,7 +3,11 @@
 <div class="container">
   <div class="row">
     <div class="col-xl-10 col-offset-1">
-    <h1>{{ object.first_name }} {{ object.last_name }}<h1>
+    <h1>{{ object.first_name }} {{ object.last_name }}</h1>
+    <ul>{% for question in object.question_user.all %}
+      <li><a href="{% url 'question-detail' question.id %}">{{question.title}}</a></li>
+
+    {% endfor %}</ul>
     </div>
   </div>
 </div>
