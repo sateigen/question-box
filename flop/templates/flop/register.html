@@ -7,8 +7,29 @@
     <div class="form-group-row card-block inline text-justify">
       <form method="post" action="">
         {% csrf_token %}
-        {{userform.as_ul}}
-        <button type="submit" class="btn btn-default">Submit</button>
+        <div>
+            <div class='form card-block'>
+                <div>
+                    <label for 'username'>User Name:</label>
+                    <input class='form-control' id='username' name='username'>
+                </div>
+                <div>
+                    <label for="first_name">First Name:</label>
+                    <input type='text' class='form-control' id='first_name' name='first_name'>
+                </div>
+                <div>
+                    <label for="last_name">Last Name:</label>
+                    <input type='text' class='form-control' id='last_name' name='last_name'>
+                </div>
+                <div>
+                    <label for="pwd">Password:</label>
+                    <input type='password' class='form-control' id='pwd' name='password'>
+                </div>
+
+                <button type='submit' class='btn btn-default' style="margin-top: 15px">Submit</button>
+            </div>
+        </div>
+        <!-- <button type="submit" class="btn btn-default">Submit</button> -->
       </form>
     </div>
   </div>
