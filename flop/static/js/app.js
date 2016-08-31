@@ -28,11 +28,28 @@ $.ajaxSetup({
     }
 });
 
+// questionID is breaking "Add a Question" on the homepage... will fix - Shannon
 var $questionID = $('.question')[0].id
 var $answerAnchor = $('#answer_anchor')
 var $addAnswer = $('#add_answer')
 var $activeUser = $("#userName")[0].value
 var $finalAnswer = $("#final_answer")
+var $newQuestion = $('#new_question')
+var $saveQuestion = $('#saveQuestion')
+
+
+$saveQuestion.click(function(){
+  console.log("YES")
+  var $title = $("#questionTitle")[0].value
+  var $desc = $("#questionDescription")[0].value
+  $.ajax({url:'/api/question/',
+          method:'POST',
+          data: {'title': $title, 'description': $desc, 'score': 0, 'user': $activeUser},
+          success: function(){
+            console.log("WOW")
+            $('#myModal').hide()
+          }});
+})
 
 function displayAnswers(answers, anchor) {
   answers.forEach(function(answer) {
