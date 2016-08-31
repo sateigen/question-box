@@ -7,25 +7,30 @@
       <hr>
     </div>
   </div>
-  <div class="row">
+  <div class="row text-center">
     <div class="col-md-1 col-md-offset-1">
       <div class="row">
         <div class="col-md-6">
-          <button><span class="glyphicon glyphicon-chevron-up"></span></button>
+          <button><span class="glyphicon glyphicon-chevron-up" id="up_vote"></span></button>
         </div>
       </div>
       <div class="row">
         <div class="col-md-6">
-          <button><span class="glyphicon glyphicon-chevron-down"></span></button>
+          <p id="score"></p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <button><span class="glyphicon glyphicon-chevron-down" id="down_vote"></span></button>
         </div>
       </div>
     </div>
     <div class="col-md-9">
-      <div class="panel panel-default question" id="{{ object.id }}">
+      <div class="panel panel-info question" id="{{ object.id }}">
         <div class="panel-body">
           {{ object.description }}
         </div>
-        <div class="panel-footer">submitted: {{ object.created_on }} by {{ object.user }} || Tags: {% for tag in object.tags.all %} {{ tag.name }} {% endfor %}</div>
+        <div class="panel-footer panel-info">submitted: {{ object.created_on }} by {{ object.user }} || Tags: {% for tag in object.tags.all %} {{ tag.name }} {% endfor %}</div>
       </div>
     </div>
   </div>

@@ -38,7 +38,8 @@ var $activeUser = $("#userName")[0].value
 var $finalAnswer = $("#final_answer")
 var $newQuestion = $('#new_question')
 var $saveQuestion = $('#saveQuestion')
-
+var $upVote = $('#up_vote')
+var $downVote = $('#down_vote')
 
 $saveQuestion.click(function(){
   console.log("YES")
@@ -88,3 +89,52 @@ $finalAnswer.on("submit",function(e){
     }
   })
 })
+getQuestionScore()
+
+// $('#score').text(getQuestionScore())
+var $score = $('#score')
+
+console.log($score.text())
+
+$upVote.click(function() {
+  console.log("YES")
+  var $tempscore = parseInt($score.text())
+  $.ajax({
+          url:'/api/question/' + $questionID + '/',
+          type:'PATCH',
+          data: {'score': $tempscore +1},
+          success: function(){
+            $upVote.parent().addClass('btn-info')
+            console.log("WOW")
+          }
+        })
+        getQuestionScore()
+      })
+
+
+function getQuestionScore() {
+  $.ajax({
+    type: "GET",
+    url: '/api/question/' + $questionID + '/',
+    success: function(data){
+      console.log('get score')
+      $('#score').text(data.score)
+    }
+  })
+}
+
+
+$downVote.click(function() {
+  console.log("YES")
+  var $tempscore = parseInt($score.text())
+  $.ajax({
+          url:'/api/question/' + $questionID + '/',
+          type:'PATCH',
+          data: {'score': $tempscore -1},
+          success: function(){
+            $downVote.parent().addClass('btn-danger')
+            console.log("WOW")
+          }
+        })
+        getQuestionScore()
+      })
