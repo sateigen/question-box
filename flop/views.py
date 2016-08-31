@@ -2,7 +2,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import UserCreationForm
 from django.views.generic.detail import DetailView
 from django.http import HttpResponseRedirect
-from django.shortcuts import render, get_object_or_404, redirect
+from django.shortcuts import render, get_object_or_404, redirect, reverse
 from .models import Question, Answer, Comment, Tag
 from django.contrib.auth.models import User
 from .serializers import QuestionSerializer, AnswerSerializer, CommentSerializer, TagSerializer, UserSerializer
@@ -86,7 +86,8 @@ def signin(request):
         user = authenticate(username=username, password=password)
         if user is not None:
             login(request, user)
-            return HttpResponseRedirect('/')
+            return HttpResponseRedirect(reverse('user_profile',
+                                                kwargs={'pk': user.id}))
         else:
             context['message'] = "Invalid login credentials"
     return render(request, 'flop/login.html', context)
@@ -98,3 +99,8 @@ def signout(request):
     else:
         logout(request)
         return render(request, 'flop/logout.html')
+
+
+class UserProfileView(DetailView):
+    model = User
+    template_name = 'flop/profile.html'
