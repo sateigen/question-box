@@ -1,6 +1,12 @@
 {% extends 'flop/base.html' %}
+{% load static %}
 {% block body %}
-  <div>
-    <p>Thank you for contributing! Please visit again.</p>
-  </div>
+
+<div class="container">
+    <div class="col-md-6 col-md-offset-3">
+        <h1 id="bye">Bye now, come back soon!</h1>
+        <img src="{% static 'images/bye.gif' %}" class="text-lg-center"></img>
+    </div>
+</div>
+
 {% endblock %}

@@ -7,6 +7,7 @@ router = routers.DefaultRouter()
 router.register(r'question', views.QuestionViewSet)
 router.register(r'answer', views.AnswerViewSet)
 router.register(r'comment', views.CommentViewSet)
+router.register(r'user', views.UserViewSet)
 router.register(r'tag', views.TagViewSet)
 
 

@@ -13,8 +13,8 @@ class Question(models.Model):
     title = models.CharField(max_length=200)
     description = models.TextField()
     selected_answer = models.OneToOneField('Answer', null=True, related_name='question_selected_answer')
-    tags = models.ManyToManyField(Tag)
-    rated_by = models.ManyToManyField(User)
+    tags = models.ManyToManyField(Tag, blank=True)
+    rated_by = models.ManyToManyField(User, blank=True)
 
 
 class Answer(models.Model):
@@ -23,7 +23,7 @@ class Answer(models.Model):
     created_on = models.DateTimeField(auto_now=True)
     description = models.TextField()
     question = models.ForeignKey(Question)
-    rated_by = models.ManyToManyField(User)
+    rated_by = models.ManyToManyField(User, blank=True)
 
 
 class Comment(models.Model):
