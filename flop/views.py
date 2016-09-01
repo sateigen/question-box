@@ -1,8 +1,7 @@
 from django.contrib.auth import authenticate, login, logout
-from django.contrib.auth.forms import UserCreationForm
 from django.views.generic.detail import DetailView
 from django.http import HttpResponseRedirect
-from django.shortcuts import render, get_object_or_404, redirect, reverse
+from django.shortcuts import render, reverse
 from .models import Question, Answer, Comment, Tag
 from django.contrib.auth.models import User
 from django.contrib.auth.hashers import make_password
@@ -71,6 +70,11 @@ class UserViewSet(viewsets.ModelViewSet):
         return queryset
 
 
+class UserProfileView(DetailView):
+    model = User
+    template_name = 'flop/profile.html'
+
+
 def register(request):
     if request.method == 'POST':
         user_form = UserForm(request.POST)
@@ -80,9 +84,10 @@ def register(request):
             user.save()
             user = authenticate(username=user_form.cleaned_data['username'],
                                 password=user_form.cleaned_data['password'])
-            login(request, user)
-            return HttpResponseRedirect(reverse('user_profile',
-                                                kwargs={'pk': user.id}))
+            if user is not None:
+                login(request, user)
+                return HttpResponseRedirect(reverse('user_profile',
+                                                    kwargs={'pk': user.id}))
     else:
         user_form = UserForm()
     context = {'userform': user_form}
@@ -112,6 +117,7 @@ def signout(request):
         return render(request, 'flop/logout.html')
 
 
-class UserProfileView(DetailView):
-    model = User
-    template_name = 'flop/profile.html'
+def all_questions(request):
+    questions = Question.objects.all()
+    context = {'questions': questions}
+    return render(request, 'flop/questions.html', context)

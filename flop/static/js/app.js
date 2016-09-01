@@ -105,7 +105,7 @@ $upVote.click(function() {
           type:'PATCH',
           data: {'score': $tempscore +1},
           success: function(){
-            $upVote.parent().addClass('btn-info')
+            $upVote.addClass('btn-info')
             console.log("WOW")
           }
         })
@@ -133,7 +133,7 @@ $downVote.click(function() {
           type:'PATCH',
           data: {'score': $tempscore -1},
           success: function(){
-            $downVote.parent().addClass('btn-danger')
+            $downVote.addClass('btn-danger')
             console.log("WOW")
           }
         })
