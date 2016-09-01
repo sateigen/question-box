@@ -21,6 +21,9 @@
         <button type="submit" class="btn btn-default">Submit</button>
       </form>
       {% if user.is_authenticated %}
+      <p class="navbar-text" id="username">
+      Welcome, <a href="/profile/{{ user.id }}/">{{ user.first_name }}</a>
+      </p>
       <a class="navbar-text navbar-right" id="logout" href="/logout/">Logout</a>
       {% else %}
       <a class="navbar-text navbar-right" id="login" href="/login/">Login</a>

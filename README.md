@@ -1,43 +1,30 @@
-# Heroku Django Starter Template
+# FlopUnderflow: A practice in cloning "Stack Overflow"
 
-An utterly fantastic project starter template for Django 1.9.
+This app is a Stack-Overflow clone which uses Python, Django, Django REST, HTML,
+ CSS, JavaScript, jQuery, and AJAX.  You may test the app on Heroku at:
 
-## Features
+        http://question-overflow.herokuapp.com/
 
-- Production-ready configuration for Static Files, Database Settings, Gunicorn, etc.
-- Enhancements to Django's static file serving functionality via WhiteNoise
+Logged-in users are able to:
 
-## How to Use
+  * Ask questions
+  * Answer questions
+  * Vote on answers positively or negatively
 
-To use this project, follow these steps:
+Questions have:
 
-1. Create your working environment.
-2. Install Django (`$ pip install django`)
-3. Create a new project using this template
+  * A title
+  * The question text
+  * Any number of tags (tags being short phrases that show the topics of the question)
+  * Any number of answers
+  * Votes
 
-## Creating Your Project
+Answers need to have:
 
-Using this template to create a new Django app is easy::
+  * The answer text
+  * A score based on the sum of all votes
 
-    $ django-admin.py startproject --template=https://github.com/heroku/heroku-django-template/archive/master.zip --name=Procfile helloworld
+Users have:
 
-You can replace ``helloworld`` with your desired project name.
-
-## Deployment to Heroku
-
-    $ git init
-    $ git add -A
-    $ git commit -m "Initial commit"
-
-    $ heroku create
-    $ git push heroku master
-
-    $ heroku run python manage.py migrate
-
-See also, a [ready-made application](https://github.com/heroku/python-getting-started), ready to deploy.
-
-## Further Reading
-
-- [Gunicorn](https://warehouse.python.org/project/gunicorn/)
-- [WhiteNoise](https://warehouse.python.org/project/whitenoise/)
-- [dj-database-url](https://warehouse.python.org/project/dj-database-url/)
+  * A profile page that shows their score and other info.
+  * A score.
