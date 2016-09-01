@@ -11,9 +11,6 @@
   <body>
     <nav class="navigation navbar-default navbar-fixed" id="flop_navbar">
       <div class="container-fluid">
-        <div class="navbar-header">
-          <a class="navbar-brand brand" href="/">Let The Knowledge Flow Through You</a>
-        </div>
         <img src="{% static 'images/water_icon.png' %}" class="navbar-text pull-xs-left" style="width: 20px;height: 20px"></img>
         <a class="navbar-text navbar-left" id="logo" href="/">Flop Undercurrent</a>
         <a class="navbar-text navbar-left" id=new_question href="#" data-toggle="modal" data-target="#myModal">Ask a Question</a>
@@ -24,6 +21,9 @@
         <button type="submit" class="btn btn-default">Submit</button>
       </form>
       {% if user.is_authenticated %}
+      <p class="navbar-text" id="username">
+      Welcome, <a href="/profile/{{ user.id }}/">{{ user.first_name }}</a>
+      </p>
       <a class="navbar-text navbar-right" id="logout" href="/logout/">Logout</a>
       {% else %}
       <a class="navbar-text navbar-right" id="login" href="/login/">Login</a>
